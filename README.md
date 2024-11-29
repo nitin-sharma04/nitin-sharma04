@@ -1,5 +1,5 @@
 <h1 align="center">Hi 👋, I'm Nitin sharma</h1>
-<h3 align="center">I am an enthusiastic MCA student and software developer, skilled in C, C++, Java, and Python, dedicated to creating innovative solutions</h3>
+<h3 align="center">I am an enthusiastic MCA student and software developer, skilled in C, C++, and Python, dedicated to creating innovative solutions</h3>
 <img align="right" alt="coding" width="400" src="https://user-images.githubusercontent.com/55389276/140866485-8fb1c876-9a8f-4d6a-98dc-08c4981eaf70.gif">
 
 <p align="left"> <img src="https://komarev.com/ghpvc/?username=nitin-sharma04&label=Profile%20views&color=0e75b6&style=flat" alt="nitin-sharma04" /> </p>
