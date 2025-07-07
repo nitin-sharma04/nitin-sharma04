@@ -4,7 +4,7 @@
 
 <p align="left"> <img src="https://komarev.com/ghpvc/?username=nitin-sharma04&label=Profile%20views&color=0e75b6&style=flat" alt="nitin-sharma04" /> </p>
 
-- 🌱 I’m currently learning **Microsoft Azure**
+- 🌱 I’m currently learning **Docker and Kubernetes**
 
 - 📫 How to reach me **nitinpandit0412@gmail.com**
 
