@@ -79,9 +79,11 @@ I'm an enthusiastic **MCA student** and **software developer** passionate about 
 ## 📊 GitHub Statistics
 
 <div align="center">
-  <img src="https://github-readme-stats.vercel.app/api?username=nitin-sharma04&show_icons=true&theme=radical&hide_border=true&count_private=true" alt="GitHub Stats" height="165"/>
-  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=nitin-sharma04&layout=compact&theme=radical&hide_border=true" alt="Top Languages" height="165"/>
+  <img src="https://github-readme-stats.vercel.app/api?username=nitin-sharma04&show_icons=true&theme=radical&hide_border=true&count_private=true" alt="GitHub Stats" height="180"/>
+  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=nitin-sharma04&layout=compact&theme=radical&hide_border=true" alt="Top Languages" height="180"/>
 </div>
+
+<br/>
 
 <div align="center">
   <img src="https://github-readme-streak-stats.herokuapp.com/?user=nitin-sharma04&theme=radical&hide_border=true" alt="GitHub Streak"/>
@@ -92,7 +94,7 @@ I'm an enthusiastic **MCA student** and **software developer** passionate about 
 ## 🏆 GitHub Trophies
 
 <div align="center">
-  <img src="https://github-profile-trophy.vercel.app/?username=nitin-sharma04&theme=radical&no-frame=true&no-bg=false&margin-w=4" alt="GitHub Trophies"/>
+  <img src="https://github-profile-trophy.vercel.app/?username=nitin-sharma04&theme=radical&no-frame=false&no-bg=true&margin-w=4&column=4" alt="GitHub Trophies"/>
 </div>
 
 ---
