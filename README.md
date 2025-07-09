@@ -1,7 +1,7 @@
 # 👋 Hi there, I'm Nitin Sharma!
 
 <div align="center">
-  <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&pause=1000&color=2E96F7&center=true&vCenter=true&width=435&lines=MCA+Student+%26+Software+Developer;Passionate+about+Full+Stack+Development;DevOps+%26+Cloud+Enthusiast;Always+learning+new+technologies!" alt="Typing SVG" />
+  <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&pause=1000&color=2E96F7&center=true&vCenter=true&width=435&lines=MCA+Student+%26+Software+Developer; Passionate+about+Full+Stack+Development;DevOps+%26+Cloud+Enthusiast;Always+learning+new+technologies!" alt="Typing SVG" />
 </div>
 
 <img align="right" alt="Coding" width="400" src="https://user-images.githubusercontent.com/55389276/140866485-8fb1c876-9a8f-4d6a-98dc-08c4981eaf70.gif">
