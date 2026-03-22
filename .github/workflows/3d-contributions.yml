@@ -2,8 +2,8 @@ name: 3D Contribution Calendar
 
 on:
   schedule:
-    - cron: "0 */12 * * *"  # Har 12 ghante mein update
-  workflow_dispatch:  # Manual trigger bhi rahega
+    - cron: "0 */12 * * *"
+  workflow_dispatch:
   push:
     branches:
       - main
@@ -11,25 +11,136 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    name: Generate 3D Contribution Graph
     steps:
       - name: Checkout
         uses: actions/checkout@v3
       
-      - name: Generate 3D Contribution Calendar
-        uses: yoshi389111/github-profile-3d-contrib@0.7.1
+      - name: Setup Python
+        uses: actions/setup-python@v4
         with:
-          username: nitin-sharma04
-          threshold: 1           # Minimum 1 contribution dikhayega
-          max: 100             # Maximum height
-          filetype: svg        # SVG format (best quality)
-          # Themes available: github, github-dark, winter, halloween, etc
+          python-version: '3.10'
+      
+      - name: Install Dependencies
+        run: pip install requests Pillow
+      
+      - name: Generate 3D Calendar
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          python3 << 'EOF'
+          import requests
+          import json
+          import os
+          from datetime import datetime, timedelta
           
+          USERNAME = "nitin-sharma04"
+          TOKEN = os.environ['GITHUB_TOKEN']
+          
+          # GraphQL Query
+          query = """
+          query($userName:String!) {
+            user(login: $userName) {
+              contributionsCollection {
+                contributionCalendar {
+                  totalContributions
+                  weeks {
+                    contributionDays {
+                      date
+                      contributionCount
+                      color
+                    }
+                  }
+                }
+              }
+            }
+          }
+          """
+          
+          headers = {
+              "Authorization": f"Bearer {TOKEN}",
+              "Content-Type": "application/json"
+          }
+          
+          response = requests.post(
+              "https://api.github.com/graphql",
+              json={"query": query, "variables": {"userName": USERNAME}},
+              headers=headers
+          )
+          
+          data = response.json()
+          calendar = data['data']['user']['contributionsCollection']['contributionCalendar']
+          
+          # Save data for 3D generation
+          os.makedirs('profile-3d-contrib', exist_ok=True)
+          
+          with open('profile-3d-contrib/contribution-data.json', 'w') as f:
+              json.dump(calendar, f, indent=2)
+          
+          print(f"Total Contributions: {calendar['totalContributions']}")
+          print("Data saved successfully!")
+          EOF
+      
+      - name: Generate SVG from Data
+        run: |
+          # Simple 3D-like SVG generation
+          python3 << 'EOF'
+          import json
+          import os
+          
+          # Read contribution data
+          with open('profile-3d-contrib/contribution-data.json', 'r') as f:
+              data = json.load(f)
+          
+          # Generate night-rainbow themed SVG
+          svg_content = f"""<svg xmlns="http://www.w3.org/2000/svg" width="828" height="128" viewBox="0 0 828 128">
+            <defs>
+              <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" style="stop-color:#ff006e;stop-opacity:1" />
+                <stop offset="50%" style="stop-color:#8338ec;stop-opacity:1" />
+                <stop offset="100%" style="stop-color:#3a86ff;stop-opacity:1" />
+              </linearGradient>
+            </defs>
+            <rect width="828" height="128" fill="#0d1117" rx="6"/>
+            <text x="414" y="20" text-anchor="middle" fill="#c9d1d9" font-size="14" font-family="Segoe UI">3D Contribution Calendar - {data['totalContributions']} Total</text>
+          """
+          
+          # Add contribution blocks
+          x, y = 30, 40
+          week_count = 0
+          for week in data['weeks']:
+              for day in week['contributionDays']:
+                  count = day['contributionCount']
+                  if count > 0:
+                      height = min(count * 3 + 10, 50)
+                      color = "#39d353" if count >= 4 else "#26a641" if count >= 3 else "#006d32" if count >= 2 else "#0e4429"
+                      svg_content += f'<rect x="{x}" y="{y + 50 - height}" width="10" height="{height}" fill="{color}" rx="2"/>'
+                  y += 14
+                  if y > 110:
+                      y = 40
+                      x += 14
+                      week_count += 1
+          
+          svg_content += '</svg>'
+          
+          # Save files
+          with open('profile-3d-contrib/profile-night-rainbow.svg', 'w') as f:
+              f.write(svg_content)
+          with open('profile-3d-contrib/profile-green.svg', 'w') as f:
+              f.write(svg_content.replace('url(#grad1)', '#39d353'))
+          with open('profile-3d-contrib/profile-season.svg', 'w') as f:
+              f.write(svg_content.replace('#0d1117', '#fff'))
+          
+          print("SVG files generated!")
+          EOF
+      
+      - name: List Files
+        run: ls -la profile-3d-contrib/
+      
       - name: Push to Output Branch
         uses: crazy-max/ghaction-github-pages@v3.1.0
         with:
           target_branch: output
           build_dir: profile-3d-contrib
-          keep_history: false   # Fresh generate har baar
+          keep_history: false
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
