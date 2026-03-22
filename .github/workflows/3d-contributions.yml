@@ -1,0 +1,35 @@
+name: 3D Contribution Calendar
+
+on:
+  schedule:
+    - cron: "0 */12 * * *"  # Har 12 ghante mein update
+  workflow_dispatch:  # Manual trigger bhi rahega
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    name: Generate 3D Contribution Graph
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      
+      - name: Generate 3D Contribution Calendar
+        uses: yoshi389111/github-profile-3d-contrib@0.7.1
+        with:
+          username: nitin-sharma04
+          threshold: 1           # Minimum 1 contribution dikhayega
+          max: 100             # Maximum height
+          filetype: svg        # SVG format (best quality)
+          # Themes available: github, github-dark, winter, halloween, etc
+          
+      - name: Push to Output Branch
+        uses: crazy-max/ghaction-github-pages@v3.1.0
+        with:
+          target_branch: output
+          build_dir: profile-3d-contrib
+          keep_history: false   # Fresh generate har baar
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
