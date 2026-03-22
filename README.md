@@ -195,7 +195,7 @@
 
 | 🏆 **Achievement** | 📅 **Year** | 🎖️ **Recognition** |
 |:---:|:---:|:---|
-| **Smart India Hackathon** | 2024 | National Winner - AI Solutions |
+| **Smart India Hackathon** | 2024 | College Winner - AI Solutions |
 | **Microsoft Gurugram Hackathon** | 2025 | Internship Secured |
 | **Turing ThriveTogether Heroes** | 2025 | Leadership & Execution Award (Mumbai) |
 | **MCA Coding Challenge** | 2024 | Two-time Champion |
